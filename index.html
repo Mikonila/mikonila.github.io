@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valerya · AI Bot Developer</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Noise overlay -->
+    <div class="noise"></div>
+    <!-- Floating grid background -->
+    <div class="grid-bg"></div>
+
+    <!-- Language toggle -->
+    <button class="lang-toggle" id="langToggle" title="Switch to Russian">
+        <span class="lang-flag">🇷🇺</span>
+        <span class="lang-code">RU</span>
+    </button>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="#" class="nav-logo">
+                <span class="logo-bracket">&lt;</span>valerya<span class="logo-bracket">/&gt;</span>
+            </a>
+            <div class="nav-links">
+                <a href="#about" class="nav-link" data-en="about" data-ru="обо мне">about</a>
+                <a href="#stack" class="nav-link" data-en="stack" data-ru="стек">stack</a>
+                <a href="#projects" class="nav-link" data-en="projects" data-ru="проекты">projects</a>
+                <a href="#spheres" class="nav-link" data-en="spheres" data-ru="сферы">spheres</a>
+                <a href="#contact" class="nav-link" data-en="contact" data-ru="контакт">contact</a>
+            </div>
+            <button class="nav-toggle" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile menu -->
+    <div class="mobile-menu">
+        <a href="#about" class="mobile-link" data-en="about" data-ru="обо мне">about</a>
+        <a href="#stack" class="mobile-link" data-en="stack" data-ru="стек">stack</a>
+        <a href="#projects" class="mobile-link" data-en="projects" data-ru="проекты">projects</a>
+        <a href="#spheres" class="mobile-link" data-en="spheres" data-ru="сферы">spheres</a>
+        <a href="#contact" class="mobile-link" data-en="contact" data-ru="контакт">contact</a>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero" id="hero">
+        <canvas class="hero-particles" id="heroParticles"></canvas>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="badge-dot"></span>
+                <span data-en="Open to projects" data-ru="Открыта к проектам">Open to projects</span>
+            </div>
+            <h1 class="hero-title" id="heroTitle">
+                <span class="hero-line" data-en="AI Integration" data-ru="Разработчик">AI Integration</span>
+                <span class="hero-line accent" data-en="Developer" data-ru="AI-интеграций">Developer</span>
+            </h1>
+            <p class="hero-subtitle" data-en="Building intelligent bots and web apps with AI integration.&lt;br&gt;Telegram · API · Databases · Production deployments." data-ru="Создаю интеллектуальных ботов и веб-приложения с интеграцией AI.&lt;br&gt;Telegram · API · Базы данных · Production-деплой.">
+                Building intelligent bots and web apps with AI integration.<br>
+                Telegram · API · Databases · Production deployments.
+            </p>
+            <div class="hero-actions">
+                <a href="#projects" class="btn btn-primary">
+                    <span data-en="Projects" data-ru="Проекты">Projects</span>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+                <a href="#contact" class="btn btn-ghost" data-en="Get in touch" data-ru="Связаться">Get in touch</a>
+            </div>
+
+            <!-- Terminal window -->
+            <div class="terminal">
+                <div class="terminal-header">
+                    <div class="terminal-dots">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                    </div>
+                    <span class="terminal-title">valerya@portfolio ~ %</span>
+                </div>
+                <div class="terminal-body">
+                    <div class="terminal-line">
+                        <span class="prompt">$</span>
+                        <span class="typing" id="typing-text"></span>
+                        <span class="cursor">▋</span>
+                    </div>
+                    <div class="terminal-output" id="terminal-output"></div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <span>scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- Marquee ticker -->
+    <div class="marquee-strip">
+        <div class="marquee-track">
+            <span class="marquee-item">PYTHON</span><span class="marquee-sep">✦</span>
+            <span class="marquee-item">AI BOTS</span><span class="marquee-sep">✦</span>
+            <span class="marquee-item">TELEGRAM</span><span class="marquee-sep">✦</span>
+            <span class="marquee-item">OPENAI GPT</span><span class="marquee-sep">✦</span>
+            <span class="marquee-item">LANGCHAIN</span><span class="marquee-sep">✦</span>
+            <span class="marquee-item">FASTAPI</span><span class="marquee-sep">✦</span>
+            <span class="marquee-item">TRADING BOTS</span><span class="marquee-sep">✦</span>
+            <span class="marquee-item">DOCKER</span><span class="marquee-sep">✦</span>
+            <span class="marquee-item">POSTGRESQL</span><span class="marquee-sep">✦</span>
+            <span class="marquee-item">BINANCE API</span><span class="marquee-sep">✦</span>
+            <span class="marquee-item">TEAM LEAD</span><span class="marquee-sep">✦</span>
+            <span class="marquee-item">PROJECT MANAGEMENT</span><span class="marquee-sep">✦</span>
+            <!-- Duplicate for seamless loop -->
+            <span class="marquee-item">PYTHON</span><span class="marquee-sep">✦</span>
+            <span class="marquee-item">AI BOTS</span><span class="marquee-sep">✦</span>
+            <span class="marquee-item">TELEGRAM</span><span class="marquee-sep">✦</span>
+            <span class="marquee-item">OPENAI GPT</span><span class="marquee-sep">✦</span>
+            <span class="marquee-item">LANGCHAIN</span><span class="marquee-sep">✦</span>
+            <span class="marquee-item">FASTAPI</span><span class="marquee-sep">✦</span>
+            <span class="marquee-item">TRADING BOTS</span><span class="marquee-sep">✦</span>
+            <span class="marquee-item">DOCKER</span><span class="marquee-sep">✦</span>
+            <span class="marquee-item">POSTGRESQL</span><span class="marquee-sep">✦</span>
+            <span class="marquee-item">BINANCE API</span><span class="marquee-sep">✦</span>
+            <span class="marquee-item">TEAM LEAD</span><span class="marquee-sep">✦</span>
+            <span class="marquee-item">PROJECT MANAGEMENT</span><span class="marquee-sep">✦</span>
+        </div>
+    </div>
+
+    <!-- About -->
+    <section class="section" id="about">
+        <div class="container">
+            <div class="section-label">
+                <span class="label-icon">✦</span>
+                <span data-en="ABOUT ME" data-ru="ОБО МНЕ">ABOUT ME</span>
+            </div>
+            <div class="about-grid">
+                <div class="about-text">
+                    <h2 class="section-title" data-en="Python developer&lt;br&gt;&lt;span class='accent'&gt;with 5+ years of experience&lt;/span&gt;" data-ru="Python-разработчик&lt;br&gt;&lt;span class='accent'&gt;с опытом более 5 лет&lt;/span&gt;">
+                        Python developer<br>
+                        <span class="accent">with 5+ years of experience</span>
+                    </h2>
+                    <p class="about-desc" data-en="I specialize in building AI bots for practical tasks. I develop backend solutions focused on real-world applicability, performance and scalability. I work with async services, databases and external storage. My current main focus is crypto trading bots." data-ru="Специализируюсь на создании AI-ботов под прикладные задачи. Разрабатываю backend-решения с упором на практическую применимость, производительность и масштабируемость. Работаю с асинхронными сервисами, базами данных и внешними хранилищами. Мой текущий основной фокус — торговые крипто-боты.">
+                        I specialize in building AI bots for practical tasks. I develop backend solutions focused on real-world applicability, performance and scalability. I work with async services, databases and external storage. My current main focus is crypto trading bots.
+                    </p>
+                    <p class="about-desc" data-en="I have experience integrating AI solutions and working with external APIs. Over 40 completed projects, an authored Python programming course, and 30%+ returning clients." data-ru="Есть опыт интеграции AI-решений и работы с внешними API. За плечами более 40 проектов, авторский курс по программированию на Python и более 30% возвращающихся клиентов.">
+                        I have experience integrating AI solutions and working with external APIs. Over 40 completed projects, an authored Python programming course, and 30%+ returning clients.
+                    </p>
+                    <p class="about-desc" data-en="I also lead my own team of artists and programmers — handling planning, deadlines and quality control from kickoff to delivery." data-ru="Также руковожу собственной командой художников и программистов — отвечаю за планирование и распределение задач, с контролем сроков и качества.">
+                        I also lead my own team of artists and programmers — handling planning, deadlines and quality control from kickoff to delivery.
+                    </p>
+                    <div class="work-format">
+                        <h3 class="format-title" data-en="Work format" data-ru="Формат работы">Work format</h3>
+                        <ul class="format-list">
+                            <li data-en="Daily progress reports" data-ru="Ежедневная отчётность">Daily progress reports</li>
+                            <li data-en="Technical support after project delivery" data-ru="Техническая поддержка после сдачи проекта">Technical support after project delivery</li>
+                            <li data-en="Fast responses &amp; revisions throughout the day" data-ru="Оперативные ответы и доработки в течение всего дня">Fast responses &amp; revisions throughout the day</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="about-right">
+                    <!-- Photo with animated holo border -->
+                    <div class="photo-frame">
+                        <div class="photo-glow"></div>
+                        <img src="IMG_2378.JPG" alt="Valerya" class="photo-img" onerror="this.style.display='none'; this.parentElement.querySelector('.photo-fallback').style.display='flex';">
+                        <div class="photo-fallback" style="display:none;">
+                            <span class="photo-initials">V</span>
+                        </div>
+                        <div class="photo-border"></div>
+                    </div>
+                    <div class="about-stats">
+                        <div class="stat-card">
+                            <span class="stat-number">40+</span>
+                            <span class="stat-label" data-en="projects" data-ru="проектов">projects</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number">5+</span>
+                            <span class="stat-label" data-en="years exp" data-ru="лет опыта">years exp</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number" data-en="5 days+" data-ru="от 5 дней">5 days+</span>
+                            <span class="stat-label" data-en="development time" data-ru="на разработку">development time</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number" data-en="$100+" data-ru="от 10К руб.">$100+</span>
+                            <span class="stat-label" data-en="per bot" data-ru="за бота">per bot</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack -->
+    <section class="section" id="stack">
+        <div class="container">
+            <div class="section-label">
+                <span class="label-icon">⚡</span>
+                <span data-en="TECH STACK" data-ru="СТЕК ТЕХНОЛОГИЙ">TECH STACK</span>
+            </div>
+            <h2 class="section-title center" data-en="Tools &lt;span class='accent'&gt;I work with&lt;/span&gt;" data-ru="Инструменты, &lt;span class='accent'&gt;с которыми работаю&lt;/span&gt;">
+                Tools <span class="accent">I work with</span>
+            </h2>
+            <div class="stack-grid">
+                <div class="stack-category">
+                    <h3 class="stack-cat-title">
+                        <span class="cat-icon">🐍</span>
+                        <span data-en="Languages &amp; Frameworks" data-ru="Языки и фреймворки">Languages &amp; Frameworks</span>
+                    </h3>
+                    <div class="stack-items">
+                        <div class="stack-item">Python</div>
+                        <div class="stack-item">aiogram</div>
+                        <div class="stack-item">FastAPI</div>
+                        <div class="stack-item">Streamlit</div>
+                        <div class="stack-item">Flask</div>
+                    </div>
+                </div>
+                <div class="stack-category">
+                    <h3 class="stack-cat-title">
+                        <span class="cat-icon">🤖</span>
+                        AI &amp; ML
+                    </h3>
+                    <div class="stack-items">
+                        <div class="stack-item">OpenAI GPT</div>
+                        <div class="stack-item">LangChain</div>
+                        <div class="stack-item">FAISS</div>
+                        <div class="stack-item">Google Cloud Vision</div>
+                        <div class="stack-item">RAG</div>
+                    </div>
+                </div>
+                <div class="stack-category">
+                    <h3 class="stack-cat-title">
+                        <span class="cat-icon">🗄️</span>
+                        <span data-en="Databases" data-ru="Базы данных">Databases</span>
+                    </h3>
+                    <div class="stack-items">
+                        <div class="stack-item">PostgreSQL</div>
+                        <div class="stack-item">SQLite</div>
+                        <div class="stack-item">Redis</div>
+                        <div class="stack-item">Vector DB</div>
+                    </div>
+                </div>
+                <div class="stack-category">
+                    <h3 class="stack-cat-title">
+                        <span class="cat-icon">🔌</span>
+                        <span data-en="API &amp; Integrations" data-ru="API и интеграции">API &amp; Integrations</span>
+                    </h3>
+                    <div class="stack-items">
+                        <div class="stack-item">Telegram Bot API</div>
+                        <div class="stack-item">Binance API</div>
+                        <div class="stack-item">TradingView</div>
+                        <div class="stack-item">REST API</div>
+                        <div class="stack-item">Webhooks</div>
+                    </div>
+                </div>
+                <div class="stack-category">
+                    <h3 class="stack-cat-title">
+                        <span class="cat-icon">🚀</span>
+                        DevOps &amp; Deploy
+                    </h3>
+                    <div class="stack-items">
+                        <div class="stack-item">Docker</div>
+                        <div class="stack-item">Git</div>
+                        <div class="stack-item">Linux / VPS</div>
+                        <div class="stack-item">CI/CD</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects -->
+    <section class="section section-dark" id="projects">
+        <div class="container">
+            <div class="section-label">
+                <span class="label-icon">📂</span>
+                <span data-en="PROJECTS" data-ru="ПРОЕКТЫ">PROJECTS</span>
+            </div>
+            <h2 class="section-title center" data-en="Featured &lt;span class='accent'&gt;work&lt;/span&gt;" data-ru="Избранные &lt;span class='accent'&gt;работы&lt;/span&gt;">
+                Featured <span class="accent">work</span>
+            </h2>
+            <div class="projects-grid">
+                <!-- Project 1: AiSignal_GPTBot -->
+                <div class="project-card">
+                    <div class="project-number">01</div>
+                    <div class="project-icon">📈</div>
+                    <h3 class="project-title">Trading AI Telegram Bot</h3>
+                    <p class="project-desc" data-en="Trading Telegram bot for Pocket Option: AI engine (OpenAI + TradingView) with 15+ technical indicators for binary options and OTC assets with probability scoring." data-ru="Торговый Telegram-бот для Pocket Option: AI-движок (OpenAI + TradingView) с 15+ техническими индикаторами для бинарных опционов и OTC-активов.">
+                        Trading Telegram bot for Pocket Option: AI engine (OpenAI + TradingView) with 15+ technical indicators for binary options and OTC assets with probability scoring.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">OpenAI</span>
+                        <span class="tag">TradingView</span>
+                        <span class="tag">Binance</span>
+                        <span class="tag">Docker</span>
+                    </div>
+                    <div class="project-actions">
+                        <a href="https://github.com/Mikonila/AiSignal_GPTBot" target="_blank" class="project-link">
+                            <span>GitHub</span>
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H5M13 1v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </a>
+                        <a href="https://t.me/AiSignal_GPTBot" target="_blank" class="project-test-btn">
+                            <span data-en="Try it" data-ru="Попробовать">Try it</span>
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M22 2L11 13M22 2L15 22L11 13M22 2L2 9L11 13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 2: Helion School -->
+                <div class="project-card">
+                    <div class="project-number">02</div>
+                    <div class="project-icon">🎨</div>
+                    <h3 class="project-title">Helion School Bot</h3>
+                    <p class="project-desc" data-en="Telegram bot for an anime drawing school. Guides users through the learning funnel, showcases artwork examples and accepts applications for online lessons." data-ru="Telegram-бот для школы рисования аниме. Ведёт пользователей по воронке обучения, показывает примеры работ и принимает заявки на онлайн-уроки.">
+                        Telegram bot for an anime drawing school. Guides users through the learning funnel, showcases artwork examples and accepts applications for online lessons.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">aiogram</span>
+                        <span class="tag">Docker</span>
+                        <span class="tag">SQLite</span>
+                    </div>
+                    <div class="project-actions">
+                        <a href="https://github.com/Mikonila/helionschool" target="_blank" class="project-link">
+                            <span>GitHub</span>
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H5M13 1v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </a>
+                        <a href="https://t.me/helionschool_bot" target="_blank" class="project-test-btn">
+                            <span data-en="Try it" data-ru="Попробовать">Try it</span>
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M22 2L11 13M22 2L15 22L11 13M22 2L2 9L11 13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 3: Psychology Bot -->
+                <div class="project-card">
+                    <div class="project-number">03</div>
+                    <div class="project-icon">🧠</div>
+                    <h3 class="project-title">Psychology Bot</h3>
+                    <p class="project-desc" data-en="AI bot for anxiety management using effective CBT techniques and conversation with a smart GPT-powered psychologist." data-ru="ИИ-бот для работы с тревожностью. Использует эффективные КПТ-техники и общение с умным психологом на базе GPT.">
+                        AI bot for anxiety management using effective CBT techniques and conversation with a smart GPT-powered psychologist.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">OpenAI</span>
+                        <span class="tag">Telegram</span>
+                        <span class="tag">CBT</span>
+                    </div>
+                    <div class="project-actions">
+                        <a href="https://github.com/Mikonila/Psychology_bot" target="_blank" class="project-link">
+                            <span>GitHub</span>
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H5M13 1v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </a>
+                        <a href="https://t.me/IAmCalm_Bot" target="_blank" class="project-test-btn">
+                            <span data-en="Try it" data-ru="Попробовать">Try it</span>
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M22 2L11 13M22 2L15 22L11 13M22 2L2 9L11 13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 4: Online School Manager -->
+                <div class="project-card">
+                    <div class="project-number">04</div>
+                    <div class="project-icon">🎓</div>
+                    <h3 class="project-title">Online School Manager</h3>
+                    <p class="project-desc" data-en="Smart Telegram consultant bot for a coding school. Matches courses based on age, experience and interests using GPT-4o + vector knowledge base (LangChain + FAISS)." data-ru="Умный Telegram-бот-консультант для школы программирования. Подбирает курсы по возрасту, опыту и интересам. GPT-4o + векторная база знаний (LangChain + FAISS).">
+                        Smart Telegram consultant bot for a coding school. Matches courses based on age, experience and interests using GPT-4o + vector knowledge base (LangChain + FAISS).
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">GPT-4o</span>
+                        <span class="tag">LangChain</span>
+                        <span class="tag">FAISS</span>
+                    </div>
+                    <div class="project-actions">
+                        <a href="https://github.com/Mikonila/Online-school_manager_bot" target="_blank" class="project-link">
+                            <span>GitHub</span>
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H5M13 1v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </a>
+                        <a href="https://t.me/codimonlinebot" target="_blank" class="project-test-btn">
+                            <span data-en="Try it" data-ru="Попробовать">Try it</span>
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M22 2L11 13M22 2L15 22L11 13M22 2L2 9L11 13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 5: Trading Signal Bot -->
+                <div class="project-card">
+                    <div class="project-number">05</div>
+                    <div class="project-icon">💹</div>
+                    <h3 class="project-title">Trading Signal Bot</h3>
+                    <p class="project-desc" data-en="Automated BTC/USDT trading signal bot combining Binance market data, technical indicators and OpenAI GPT analysis for swing and scalping signals via Telegram." data-ru="Автоматический бот торговых сигналов BTC/USDT. Комбинирует данные Binance, технические индикаторы и GPT-анализ для Telegram.">
+                        Automated BTC/USDT trading signal bot combining Binance market data, technical indicators and OpenAI GPT analysis for swing and scalping signals via Telegram.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Binance API</span>
+                        <span class="tag">GPT</span>
+                        <span class="tag">Telegram</span>
+                    </div>
+                    <div class="project-actions">
+                        <a href="https://github.com/Mikonila/Trading_signal_bot" target="_blank" class="project-link">
+                            <span>GitHub</span>
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H5M13 1v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 6: Referral System Bot -->
+                <div class="project-card">
+                    <div class="project-number">06</div>
+                    <div class="project-icon">🔗</div>
+                    <h3 class="project-title">Referral System Bot</h3>
+                    <p class="project-desc" data-en="Telegram referral bot for private communities: personal invite links, referral tracking in SQLite, admin approval with full referral stats." data-ru="Telegram реферальный бот для закрытых сообществ. Инвайт-ссылки, отслеживание рефералов в SQLite, модерация с полной статистикой.">
+                        Telegram referral bot for private communities: personal invite links, referral tracking in SQLite, admin approval with full referral stats.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">SQLite</span>
+                        <span class="tag">Telegram</span>
+                    </div>
+                    <div class="project-actions">
+                        <a href="https://github.com/Mikonila/Referal_system_bot" target="_blank" class="project-link">
+                            <span>GitHub</span>
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H5M13 1v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="projects-more">
+                <a href="https://github.com/Mikonila?tab=repositories" target="_blank" class="btn btn-ghost">
+                    <span data-en="All repositories on GitHub" data-ru="Все репозитории на GitHub">All repositories on GitHub</span>
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H5M13 1v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Spheres -->
+    <section class="section" id="spheres">
+        <div class="container">
+            <div class="section-label">
+                <span class="label-icon">🌐</span>
+                <span data-en="INDUSTRIES" data-ru="СФЕРЫ">INDUSTRIES</span>
+            </div>
+            <h2 class="section-title center" data-en="Experience &lt;span class='accent'&gt;by industry&lt;/span&gt;" data-ru="Опыт &lt;span class='accent'&gt;по индустриям&lt;/span&gt;">
+                Experience <span class="accent">by industry</span>
+            </h2>
+            <div class="spheres-grid">
+                <div class="sphere-card">
+                    <div class="sphere-icon">💰</div>
+                    <h3 class="sphere-title" data-en="FinTech &amp; Trading" data-ru="Финтех и трейдинг">FinTech &amp; Trading</h3>
+                    <p class="sphere-desc" data-en="Trading signals, market analysis, exchange integrations, technical indicators, AI-powered analysis" data-ru="Торговые сигналы, анализ рынка, интеграция с биржами, технические индикаторы, AI-анализ">
+                        Trading signals, market analysis, exchange integrations, technical indicators, AI-powered analysis
+                    </p>
+                </div>
+                <div class="sphere-card">
+                    <div class="sphere-icon">🎓</div>
+                    <h3 class="sphere-title" data-en="Education" data-ru="Образование">Education</h3>
+                    <p class="sphere-desc" data-en="Consultant bots for schools, course matching, learning funnels, knowledge bases" data-ru="Консультанты для школ, подбор курсов, воронки обучения, базы знаний">
+                        Consultant bots for schools, course matching, learning funnels, knowledge bases
+                    </p>
+                </div>
+                <div class="sphere-card">
+                    <div class="sphere-icon">🏥</div>
+                    <h3 class="sphere-title" data-en="Psychology &amp; Health" data-ru="Психология и здоровье">Psychology &amp; Health</h3>
+                    <p class="sphere-desc" data-en="Mental health bots, CBT techniques, AI-powered therapy conversations" data-ru="Боты для психологической поддержки, КПТ-техники, работа с тревожностью">
+                        Mental health bots, CBT techniques, AI-powered therapy conversations
+                    </p>
+                </div>
+                <div class="sphere-card">
+                    <div class="sphere-icon">🎨</div>
+                    <h3 class="sphere-title" data-en="Creative &amp; Art" data-ru="Творчество и искусство">Creative &amp; Art</h3>
+                    <p class="sphere-desc" data-en="Bots for creative schools, artwork showcases, application funnels, scheduling" data-ru="Боты для творческих школ, демонстрация работ, воронки заявок, расписание">
+                        Bots for creative schools, artwork showcases, application funnels, scheduling
+                    </p>
+                </div>
+                <div class="sphere-card">
+                    <div class="sphere-icon">🛒</div>
+                    <h3 class="sphere-title" data-en="E-commerce" data-ru="E-commerce">E-commerce</h3>
+                    <p class="sphere-desc" data-en="Referral systems, private communities, sales automation, invite tracking" data-ru="Реферальные системы, закрытые сообщества, автоматизация продаж">
+                        Referral systems, private communities, sales automation, invite tracking
+                    </p>
+                </div>
+                <div class="sphere-card">
+                    <div class="sphere-icon">🤝</div>
+                    <h3 class="sphere-title" data-en="Customer Service" data-ru="Клиентский сервис">Customer Service</h3>
+                    <p class="sphere-desc" data-en="AI support assistants, adaptive communication, request analytics, knowledge-base Q&amp;A" data-ru="AI-ассистенты поддержки, адаптивная коммуникация, аналитика обращений">
+                        AI support assistants, adaptive communication, request analytics, knowledge-base Q&amp;A
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section section-dark" id="contact">
+        <div class="container">
+            <div class="contact-block">
+                <div class="section-label">
+                    <span class="label-icon">📨</span>
+                    <span data-en="CONTACT" data-ru="КОНТАКТ">CONTACT</span>
+                </div>
+                <h2 class="section-title" data-en="Have a project?&lt;br&gt;&lt;span class='accent'&gt;Let's talk&lt;/span&gt;" data-ru="Есть проект?&lt;br&gt;&lt;span class='accent'&gt;Давайте обсудим&lt;/span&gt;">
+                    Have a project?<br><span class="accent">Let's talk</span>
+                </h2>
+                <p class="contact-desc" data-en="Open to interesting projects in AI bots, automation and integrations. Reach out and let's discuss your task." data-ru="Открыта к интересным проектам в сфере AI-ботов, автоматизации и интеграций. Пишите — обсудим вашу задачу.">
+                    Open to interesting projects in AI bots, automation and integrations. Reach out and let's discuss your task.
+                </p>
+                <div class="contact-links">
+                    <a href="https://t.me/mikonila" target="_blank" class="contact-card">
+                        <div class="contact-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                        </div>
+                        <div class="contact-info">
+                            <span class="contact-name">Telegram</span>
+                            <span class="contact-handle">@mikonila</span>
+                        </div>
+                        <svg class="contact-arrow" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H5M13 1v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </a>
+                    <a href="mailto:miko.nila20@gmail.com" class="contact-card">
+                        <div class="contact-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                        </div>
+                        <div class="contact-info">
+                            <span class="contact-name">Email</span>
+                            <span class="contact-handle">miko.nila20@gmail.com</span>
+                        </div>
+                        <svg class="contact-arrow" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H5M13 1v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-inner">
+                <span class="footer-logo">
+                    <span class="logo-bracket">&lt;</span>valerya<span class="logo-bracket">/&gt;</span>
+                </span>
+                <span class="footer-copy">© 2025 Valerya · AI Bot Developer</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Chat Widget -->
+    <div class="chat-widget" id="chatWidget">
+        <button class="chat-toggle" id="chatToggle" aria-label="Open AI chat">
+            <svg class="chat-toggle-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg class="chat-toggle-close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><path d="M18 6L6 18M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="chat-badge">AI</span>
+        </button>
+
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header">
+                <div class="chat-header-info">
+                    <div class="chat-avatar">🤖</div>
+                    <div>
+                        <div class="chat-header-name">Valerya (AI Chatbot)</div>
+                        <div class="chat-header-status">
+                            <span class="status-dot"></span>
+                            <span id="chatStatus" data-en="Online · Ask me anything" data-ru="Онлайн · Спрашивайте">Online · Ask me anything</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="chat-minimize" id="chatMinimize">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 8h8" stroke-linecap="round"/></svg>
+                </button>
+            </div>
+
+            <div class="chat-messages" id="chatMessages">
+                <div class="chat-msg bot">
+                    <div class="chat-msg-avatar">🤖</div>
+                    <div class="chat-msg-bubble" data-en="Hi! 👋 I'm Valerya. I can tell you about my projects, tech stack, experience, or how I work. What would you like to know?" data-ru="Привет! 👋 Я Валерия. Могу рассказать о проектах, стеке, опыте или формате работы. Что вас интересует?">
+                        Hi! 👋 I'm Valerya. I can tell you about my projects, tech stack, experience, or how I work. What would you like to know?
+                    </div>
+                </div>
+            </div>
+
+            <div class="chat-input-area" id="chatInputArea">
+                <input type="text" class="chat-input" id="chatInput" data-en-placeholder="Ask about Valerya's projects..." data-ru-placeholder="Спросите о проектах Валерии..." placeholder="Ask about Valerya's projects...">
+                <button class="chat-send" id="chatSend">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 9l14-7-4 16-4-7-6-2z" fill="currentColor"/></svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
