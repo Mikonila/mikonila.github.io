@@ -642,6 +642,61 @@ chatInput.addEventListener('keydown', e => {
 });
 
 /* ========================================
+   Contact Form → Telegram
+   ======================================== */
+const TELEGRAM_CHAT_ID = 1339362869;
+
+async function submitContactForm(e) {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const name = form.querySelector('[name="name"]').value.trim();
+    const email = form.querySelector('[name="email"]').value.trim();
+    const message = form.querySelector('[name="message"]').value.trim();
+    if (!name || !email || !message) return;
+
+    const submitBtn = form.querySelector('.form-submit');
+    const statusEl = document.getElementById('formStatus');
+    const originalText = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = '...';
+    statusEl.className = 'form-status';
+
+    const text = `📩 <b>Новая заявка!</b> (AI Bot Portfolio)\n\n👤 <b>Имя:</b> ${name}\n📧 <b>Email:</b> ${email}\n\n💬 <b>Сообщение:</b>\n${message}`;
+
+    try {
+        if (typeof TELEGRAM_BOT_TOKEN !== 'undefined' && TELEGRAM_BOT_TOKEN) {
+            const res = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text, parse_mode: 'HTML' })
+            });
+            const data = await res.json();
+            if (data.ok) {
+                statusEl.className = 'form-status success';
+                statusEl.textContent = currentLang === 'ru'
+                    ? '✓ Сообщение отправлено! Отвечу в ближайшее время.'
+                    : '✓ Message sent! I\'ll get back to you soon.';
+                form.reset();
+            } else { throw new Error(data.description || 'API error'); }
+        } else {
+            window.location.href = `mailto:miko.nila20@gmail.com?subject=${encodeURIComponent('Заявка от ' + name)}&body=${encodeURIComponent(message + '\n\nEmail: ' + email)}`;
+            statusEl.className = 'form-status success';
+            statusEl.textContent = currentLang === 'ru' ? '✓ Открывается почтовый клиент...' : '✓ Opening your mail client...';
+        }
+    } catch (err) {
+        statusEl.className = 'form-status error';
+        statusEl.textContent = currentLang === 'ru'
+            ? '✗ Ошибка. Напишите напрямую: @mikonila'
+            : '✗ Error. Contact directly: @mikonila';
+    }
+    submitBtn.disabled = false;
+    submitBtn.textContent = originalText;
+}
+
+const contactForm = document.getElementById('contactForm');
+if (contactForm) contactForm.addEventListener('submit', submitContactForm);
+
+/* ========================================
    Init Everything
    ======================================== */
 initChatMode();
