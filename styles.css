@@ -662,7 +662,7 @@ a { color: inherit; text-decoration: none; }
    ======================================== */
 .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 20px; margin-bottom: 48px; }
 .project-card {
-    position: relative; background: var(--bg-card); border: 1px solid var(--border);
+    position: relative; background-color: var(--bg-card); border: 1px solid var(--border);
     border-radius: 6px; padding: 32px; transition: var(--transition);
     display: flex; flex-direction: column; overflow: hidden;
 }
@@ -672,7 +672,7 @@ a { color: inherit; text-decoration: none; }
     opacity: 0; transition: var(--transition);
 }
 .project-card:hover {
-    border-color: var(--border-hover); background: var(--bg-card-hover);
+    border-color: var(--border-hover); background-color: var(--bg-card-hover);
     transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 .project-card:hover::before { opacity: 1; }
