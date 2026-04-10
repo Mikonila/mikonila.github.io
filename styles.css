@@ -684,14 +684,14 @@ a { color: inherit; text-decoration: none; }
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(160deg, rgba(10,10,15,0.86) 0%, rgba(10,10,15,0.76) 100%);
+    background: linear-gradient(160deg, rgba(10,10,15,0.55) 0%, rgba(10,10,15,0.72) 100%);
     z-index: 0;
     border-radius: 6px;
     pointer-events: none;
     transition: var(--transition);
 }
 .project-card.has-bg:hover::after {
-    background: linear-gradient(160deg, rgba(10,10,15,0.78) 0%, rgba(10,10,15,0.65) 100%);
+    background: linear-gradient(160deg, rgba(10,10,15,0.42) 0%, rgba(10,10,15,0.60) 100%);
 }
 .project-card.has-bg > * { position: relative; z-index: 1; }
 .project-number { font-family: var(--mono); font-size: 0.7rem; color: var(--text-muted); margin-bottom: 16px; }
