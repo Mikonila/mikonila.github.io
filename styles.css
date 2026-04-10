@@ -663,7 +663,7 @@ a { color: inherit; text-decoration: none; }
 .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 20px; margin-bottom: 48px; }
 .project-card {
     position: relative; background: var(--bg-card); border: 1px solid var(--border);
-    border-radius: var(--radius); padding: 32px; transition: var(--transition);
+    border-radius: 6px; padding: 32px; transition: var(--transition);
     display: flex; flex-direction: column; overflow: hidden;
 }
 .project-card::before {
