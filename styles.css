@@ -679,6 +679,7 @@ a { color: inherit; text-decoration: none; }
 .project-card.has-bg {
     background-size: cover;
     background-position: center top;
+    z-index: 0;
 }
 .project-card.has-bg::after {
     content: '';
