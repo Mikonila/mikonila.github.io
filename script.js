@@ -679,7 +679,7 @@ async function submitContactForm(e) {
                 form.reset();
             } else { throw new Error(data.description || 'API error'); }
         } else {
-            window.location.href = `mailto:miko.nila20@gmail.com?subject=${encodeURIComponent('Заявка от ' + name)}&body=${encodeURIComponent(message + '\n\nEmail: ' + email)}`;
+            window.location.href = `mailto:key20angelina@gmail.com?subject=${encodeURIComponent('Заявка от ' + name)}&body=${encodeURIComponent(message + '\n\nEmail: ' + email)}`;
             statusEl.className = 'form-status success';
             statusEl.textContent = currentLang === 'ru' ? '✓ Открывается почтовый клиент...' : '✓ Opening your mail client...';
         }
